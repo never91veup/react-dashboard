@@ -8,7 +8,7 @@ In the server-project directory, you can run:
 
 ### `npm run start` or `npm run dev`
 
-## Available Scripts
+## Start Client
 
 In the client-project directory, you can run:
 
