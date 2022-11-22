@@ -1,0 +1,106 @@
+<!--
+=========================================================
+* Material Dashboard 2 PRO React - v3.0.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-pro-react
+* Copyright 2021 Creative Tim (https://www.creative-tim.com)
+
+Coded by www.creative-tim.com
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+Software.
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1A73E8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="%PUBLIC_URL%/apple-icon.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>Material Dashboard 2 React</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+      rel="stylesheet"
+    />
+    <style media="only screen">
+      html, body, #root {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        box-sizing: border-box;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      html {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0;
+        overflow: auto;
+      }
+
+      body {
+        padding: 1rem;
+        overflow: auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script>
+      let appLocation = "./";
+      let boilerplatePath = "";
+      let systemJsMap = {
+        "@ag-grid-community/react": "https://cdn.jsdelivr.net/npm/@ag-grid-community/react@28.2.1/",
+        "@ag-grid-community/styles": "https://cdn.jsdelivr.net/npm/@ag-grid-community/styles@28.2.1",
+        "ag-grid-community": "https://cdn.jsdelivr.net/npm/ag-grid-community@28.2.1",
+        "ag-grid-enterprise": "https://cdn.jsdelivr.net/npm/ag-grid-enterprise@28.2.1/",
+        "ag-grid-react": "https://cdn.jsdelivr.net/npm/ag-grid-react@28.2.1/"
+      };
+      let systemJsPaths = {
+        "@ag-grid-community/client-side-row-model": "https://cdn.jsdelivr.net/npm/@ag-grid-community/client-side-row-model@28.2.1/dist/client-side-row-model.cjs.min.js",
+        "@ag-grid-community/core": "https://cdn.jsdelivr.net/npm/@ag-grid-community/core@28.2.1/dist/core.cjs.min.js",
+        "@ag-grid-community/csv-export": "https://cdn.jsdelivr.net/npm/@ag-grid-community/csv-export@28.2.1/dist/csv-export.cjs.min.js",
+        "@ag-grid-community/infinite-row-model": "https://cdn.jsdelivr.net/npm/@ag-grid-community/infinite-row-model@28.2.1/dist/infinite-row-model.cjs.min.js",
+        "@ag-grid-enterprise/charts": "https://cdn.jsdelivr.net/npm/@ag-grid-enterprise/charts@28.2.1/dist/charts.cjs.min.js",
+        "@ag-grid-enterprise/clipboard": "https://cdn.jsdelivr.net/npm/@ag-grid-enterprise/clipboard@28.2.1/dist/clipboard.cjs.min.js",
+        "@ag-grid-enterprise/column-tool-panel": "https://cdn.jsdelivr.net/npm/@ag-grid-enterprise/column-tool-panel@28.2.1/dist/column-tool-panel.cjs.min.js",
+        "@ag-grid-enterprise/core": "https://cdn.jsdelivr.net/npm/@ag-grid-enterprise/core@28.2.1/dist/core.cjs.min.js",
+        "@ag-grid-enterprise/excel-export": "https://cdn.jsdelivr.net/npm/@ag-grid-enterprise/excel-export@28.2.1/dist/excel-export.cjs.min.js",
+        "@ag-grid-enterprise/filter-tool-panel": "https://cdn.jsdelivr.net/npm/@ag-grid-enterprise/filter-tool-panel@28.2.1/dist/filter-tool-panel.cjs.min.js",
+        "@ag-grid-enterprise/master-detail": "https://cdn.jsdelivr.net/npm/@ag-grid-enterprise/master-detail@28.2.1/dist/master-detail.cjs.min.js",
+        "@ag-grid-enterprise/menu": "https://cdn.jsdelivr.net/npm/@ag-grid-enterprise/menu@28.2.1/dist/menu.cjs.min.js",
+        "@ag-grid-enterprise/multi-filter": "https://cdn.jsdelivr.net/npm/@ag-grid-enterprise/multi-filter@28.2.1/dist/multi-filter.cjs.min.js",
+        "@ag-grid-enterprise/range-selection": "https://cdn.jsdelivr.net/npm/@ag-grid-enterprise/range-selection@28.2.1/dist/range-selection.cjs.min.js",
+        "@ag-grid-enterprise/rich-select": "https://cdn.jsdelivr.net/npm/@ag-grid-enterprise/rich-select@28.2.1/dist/rich-select.cjs.min.js",
+        "@ag-grid-enterprise/row-grouping": "https://cdn.jsdelivr.net/npm/@ag-grid-enterprise/row-grouping@28.2.1/dist/row-grouping.cjs.min.js",
+        "@ag-grid-enterprise/server-side-row-model": "https://cdn.jsdelivr.net/npm/@ag-grid-enterprise/server-side-row-model@28.2.1/dist/server-side-row-model.cjs.min.js",
+        "@ag-grid-enterprise/set-filter": "https://cdn.jsdelivr.net/npm/@ag-grid-enterprise/set-filter@28.2.1/dist/set-filter.cjs.min.js",
+        "@ag-grid-enterprise/side-bar": "https://cdn.jsdelivr.net/npm/@ag-grid-enterprise/side-bar@28.2.1/dist/side-bar.cjs.min.js",
+        "@ag-grid-enterprise/sparklines": "https://cdn.jsdelivr.net/npm/@ag-grid-enterprise/sparklines@28.2.1/dist/sparklines.cjs.min.js",
+        "@ag-grid-enterprise/status-bar": "https://cdn.jsdelivr.net/npm/@ag-grid-enterprise/status-bar@28.2.1/dist/status-bar.cjs.min.js",
+        "@ag-grid-enterprise/viewport-row-model": "https://cdn.jsdelivr.net/npm/@ag-grid-enterprise/viewport-row-model@28.2.1/dist/viewport-row-model.cjs.min.js"
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@0.19.47/dist/system.js"></script>
+    <script src="systemjs.config.js"></script>
+    <script>System.import("../src/layouts/tables").catch(function(err) { console.error(err); });</script>
+  </body>
+</html>
