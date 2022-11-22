@@ -3,7 +3,6 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-enterprise";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
-import "./styles.css";
 
 const createMyDataSource = (data) => {
   window.rowDataServerSide = data;
@@ -73,18 +72,18 @@ class Tables extends Component {
       .then((data) => updateData(data));
   };
 
-  onGridReadyBaskets = (params) => {
-    this.gridApi = params.api;
-
-    const updateData = (data) => {
-      const datasource = createMyDataSource(data);
-      params.api.setServerSideDatasource(datasource);
-    };
-
-    fetch("http://localhost:5000/api/basket/")
-      .then((resp) => resp.json())
-      .then((data) => updateData(data));
-  };
+  // onGridReadyBaskets = (params) => {
+  //   this.gridApi = params.api;
+  //
+  //   const updateData = (data) => {
+  //     const datasource = createMyDataSource(data);
+  //     params.api.setServerSideDatasource(datasource);
+  //   };
+  //
+  //   fetch("http://localhost:5000/api/basket/")
+  //     .then((resp) => resp.json())
+  //     .then((data) => updateData(data));
+  // };
 
   onBtStartEditing = () => {
     const selectedRows = this.gridApi.getSelectedNodes();
@@ -173,7 +172,7 @@ class Tables extends Component {
           </div>
           <div
             style={{
-              height: "100%",
+              height: "350px",
               width: "100%",
             }}
             className="ag-theme-alpine-dark"
@@ -185,31 +184,32 @@ class Tables extends Component {
               rowSelection={this.state.rowSelection} // eslint-disable-line react/destructuring-assignment
               rowModelType={this.state.rowModelType} // eslint-disable-line react/destructuring-assignment
               serverSideInfiniteScroll
-              getRowId={getRowId}
               onGridReady={this.onGridReadyUsers}
+              getRowId={getRowId}
               onRowValueChanged={onRowValueChanged}
             />
             <div style={{ marginBottom: 100 }}> </div>
-            <AgGridReact
-              columnDefs={[
-                { field: "sum", width: 150 },
-                { field: "userId", width: 100 },
-              ]}
-              defaultColDef={{
-                width: 100,
-                resizable: true,
-                editable: false,
-              }}
-              rowModelType="serverSide"
-              serverSideInfiniteScroll
-              getRowId={getRowId}
-              onGridReady={this.onGridReadyBaskets}
-            />
           </div>
         </div>
       </div>
     );
   }
 }
+
+// <AgGridReact
+//   columnDefs={[
+//     { field: "sum", width: 150 },
+//     { field: "userId", width: 100 },
+//   ]}
+//   defaultColDef={{
+//     width: 100,
+//     resizable: true,
+//     editable: false,
+//   }}
+//   rowModelType="serverSide"
+//   serverSideInfiniteScroll
+//   onGridReady={this.onGridReadyBaskets}
+//   getRowId={getRowId}
+// />
 
 export default Tables;
