@@ -8,7 +8,7 @@ In the project directory, you can run:
 
 ### `cd .\react-dashboard-server\`
 and
-### `npm run start` or `npm run dev`
+### `npm run start`
 
 ## Start Client
 
