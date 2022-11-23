@@ -72,18 +72,18 @@ class Tables extends Component {
       .then((data) => updateData(data));
   };
 
-  // onGridReadyBaskets = (params) => {
-  //   this.gridApi = params.api;
-  //
-  //   const updateData = (data) => {
-  //     const datasource = createMyDataSource(data);
-  //     params.api.setServerSideDatasource(datasource);
-  //   };
-  //
-  //   fetch("http://localhost:5000/api/basket/")
-  //     .then((resp) => resp.json())
-  //     .then((data) => updateData(data));
-  // };
+  onGridReadyBaskets = (params) => {
+    this.gridApiBasket = params.api;
+
+    const updateData = (data) => {
+      const datasource = createMyDataSource(data);
+      params.api.setServerSideDatasource(datasource);
+    };
+
+    fetch("http://localhost:5000/api/basket/")
+      .then((resp) => resp.json())
+      .then((data) => updateData(data));
+  };
 
   onBtStartEditing = () => {
     const selectedRows = this.gridApi.getSelectedNodes();
@@ -125,6 +125,7 @@ class Tables extends Component {
           role: user.role,
         });
         this.gridApi.refreshServerSide();
+        this.gridApiBasket.refreshServerSide();
       });
   };
 
@@ -142,6 +143,7 @@ class Tables extends Component {
         if (indexToRemove >= 0) {
           window.rowDataServerSide.splice(indexToRemove, 1);
         }
+        this.gridApiBasket.refreshServerSide();
         this.gridApi.refreshServerSide();
       }
     });
@@ -189,27 +191,26 @@ class Tables extends Component {
               onRowValueChanged={onRowValueChanged}
             />
             <div style={{ marginBottom: 100 }}> </div>
+            <AgGridReact
+              columnDefs={[
+                { field: "sum", width: 150 },
+                { field: "userId", width: 100 },
+              ]}
+              defaultColDef={{
+                width: 100,
+                resizable: true,
+                editable: false,
+              }}
+              rowModelType="serverSide"
+              serverSideInfiniteScroll
+              onGridReady={this.onGridReadyBaskets}
+              getRowId={getRowId}
+            />
           </div>
         </div>
       </div>
     );
   }
 }
-
-// <AgGridReact
-//   columnDefs={[
-//     { field: "sum", width: 150 },
-//     { field: "userId", width: 100 },
-//   ]}
-//   defaultColDef={{
-//     width: 100,
-//     resizable: true,
-//     editable: false,
-//   }}
-//   rowModelType="serverSide"
-//   serverSideInfiniteScroll
-//   onGridReady={this.onGridReadyBaskets}
-//   getRowId={getRowId}
-// />
 
 export default Tables;
