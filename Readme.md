@@ -7,6 +7,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 In the project directory, you can run:
 
 ### `cd .\react-dashboard-server\`
+### `npm install`
 and
 ### `npm run start`
 
@@ -15,6 +16,7 @@ and
 In the project directory, you can run:
 
 ### `cd .\react-dashboard-client\`
+### `npm install`
 and
 ### `npm start`
 
